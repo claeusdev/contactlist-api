@@ -1,4 +1,4 @@
-class ContactsController < ApplicationController
+class Api::V1::ContactsController < ApplicationController
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
 
   def index
