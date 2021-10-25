@@ -13,6 +13,12 @@ class ContactsController < ApplicationController
     end
   end
 
+  def destroy
+    Contact.find(params[:id]).destroy!
+
+    head :no_content
+  end
+
 
   private
 
