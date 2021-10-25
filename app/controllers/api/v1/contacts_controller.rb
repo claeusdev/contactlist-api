@@ -3,13 +3,13 @@ class Api::V1::ContactsController < ApplicationController
 
   def index
     @contacts = Contact.all
-    render json: @contacts
+    render json: serialize(@contacts)
   end
 
   def create
     contact = Contact.new(contact_params)
     if contact.save
-      render json: contact, status: :created
+      render json: serialize(contact), status: :created
     else
       render json: contact.errors, status: :unprocessable_entity
     end
@@ -23,8 +23,8 @@ class Api::V1::ContactsController < ApplicationController
 
   private
 
-  def not_destroyed
-    render json: {}, status: :unprocessable_entity
+  def serialize(records, options = {})
+    ContactSerializer.new(records, options).serializable_hash.to_json
   end
 
   def contact_params
