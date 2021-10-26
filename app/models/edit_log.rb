@@ -1,0 +1,2 @@
+class EditLog < ApplicationRecord
+end

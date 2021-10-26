@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_054544) do
+ActiveRecord::Schema.define(version: 2021_10_26_075150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2021_10_25_054544) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "edit_logs", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "field"
+    t.string "old_value"
+    t.string "new_value"
+    t.bigint "contact_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_edit_logs_on_contact_id"
   end
 
 end

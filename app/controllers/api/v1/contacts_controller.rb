@@ -4,7 +4,7 @@ class Api::V1::ContactsController < ApplicationController
 
   def index
     @contacts = Contact.all
-    render json: serialize(@contacts)
+    render json: serialize(@contacts, options)
   end
 
   def create
@@ -18,14 +18,14 @@ class Api::V1::ContactsController < ApplicationController
 
   def update
     if @contact.update(contact_params)
-      render json: serialize(@contact), status: 200
+      render json: serialize(@contact, options), status: 200
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
   end
 
   def show
-    render json: serialize(@contact), status: 200
+    render json: serialize(@contact, options), status: 200
   end
 
   def destroy
@@ -38,6 +38,19 @@ class Api::V1::ContactsController < ApplicationController
 
   def set_contact
     @contact = Contact.find(params[:id])
+  end
+
+  def options
+    @options ||= { include: %i[edit_logs] }
+  end
+
+  # Get all contacts
+  def contacts
+    @contacts ||= Contact.includes(:edit_logs).all
+  end
+
+  def contact
+    @contact ||= Contact.includes(:edit_logs).find(params[:id])
   end
 
   def serialize(records, options = {})
