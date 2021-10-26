@@ -1,6 +1,6 @@
 class Api::V1::ContactsController < ApplicationController
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
-  before_action :set_contact, only: [:show, :update, :destroy]
+  before_action :set_contact, only: %i[show update destroy]
 
   def index
     @contacts = Contact.all
@@ -32,7 +32,6 @@ class Api::V1::ContactsController < ApplicationController
     @contact.destroy!
     head :no_content
   end
-
 
   private
 
