@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an api only Rails application.
 
-Things you may want to cover:
+# Get started
+- Clone this repo
+- Run `cd contactlist-api`
+- Run `bin/rails bundle install` to install dependencies
+- Run `bin/rails db:create && db:migrate` to create the database and run migrations
+- Finally, run `bin/rails server` or `bin/rails s` to boot the application.
+- You must boot the this application before you boot the client.
 
-* Ruby version
 
-* System dependencies
+# Testing
 
-* Configuration
+Testing has been setup with Rspec and FactoryBot
 
-* Database creation
+To tun the tests:
+- Open your console and run `rspec`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# todo
+- pagination
+- more tests
+- create multiple records at the same time
